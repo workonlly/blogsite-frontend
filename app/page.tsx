@@ -3,7 +3,7 @@ import Banner from './banner';
 import Posts from './posts'
 import { Metadata } from 'next/dist/lib/metadata/types/metadata-interface';
 
-const BACKEND_BASE_URL = process.env.BACKEND_URL ;
+const BACKEND_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL ;
 
 const BrandIcon = () => (
   <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">

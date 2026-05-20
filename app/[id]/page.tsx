@@ -1,7 +1,7 @@
 import parse from 'html-react-parser';
 import { Metadata } from 'next';
 
-const BACKEND_BASE_URL = process.env.BACKEND_URL || 'http://localhost:4000';
+const BACKEND_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:4000';
 
 type Post = {
   id: number;

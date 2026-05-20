@@ -1,6 +1,6 @@
 import { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
 
-const BACKEND_BASE_URL = process.env.BACKEND_URL ;
+const BACKEND_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL ;
 
 type PageRecord = {
   seo_title: string | null;

@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-const BACKEND_BASE_URL = process.env.BACKEND_URL || 'http://localhost:4000';
+const BACKEND_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:4000';
 // Define the shape of our Post data based on your SQLite schema
 interface Post {
   id: number;

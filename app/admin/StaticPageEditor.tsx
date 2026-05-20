@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-const BACKEND_BASE_URL = process.env.BACKEND_URL || 'http://localhost:4000';
+const BACKEND_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:4000';
 type PageRecord = {
   id: number;
   seo_title: string | null;
@@ -78,7 +78,7 @@ export default function StaticPageEditor({ pageId, title, endpoint }: Props) {
         setDescription(record.description || '');
       } catch (fetchError) {
         console.error(fetchError);
-        setError('Network error. Ensure the backend is running on localhost:4000.');
+        setError('Network error. Ensure the backend URL is configured and reachable.');
       } finally {
         setIsLoading(false);
       }
