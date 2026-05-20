@@ -1,6 +1,6 @@
 export const runtime = 'nodejs';
 
-const BACKEND_BASE_URL = process.env.BACKEND_BASE_URL || 'http://localhost:4000';
+const BACKEND_BASE_URL = process.env.BACKEND_URL || 'http://localhost:4000';
 
 async function proxyToBackend(request: Request, init: RequestInit = {}) {
   const backendUrl = `${BACKEND_BASE_URL}/api/posts`;

@@ -10,7 +10,7 @@ type Post = {
   created_at: string;
 };
 
-const BACKEND_BASE_URL = process.env.BACKEND_BASE_URL || 'http://localhost:4000';
+const BACKEND_BASE_URL = process.env.BACKEND_URL || 'http://localhost:4000';
 
 const resolveImageSrc = (imageUrl: string | null): string => {
   if (!imageUrl) return '/robot.png';
