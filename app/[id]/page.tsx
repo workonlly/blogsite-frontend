@@ -19,8 +19,8 @@ type Props = {
 
 const resolveImageSrc = (imageUrl: string | null): string => {
   if (!imageUrl) return '/robot.png';
-  if (imageUrl.startsWith('http://localhost:4000/api/media/')) {
-    return imageUrl.replace('http://localhost:4000', '');
+  if (imageUrl.startsWith(`${BACKEND_BASE_URL}/api/media/`)) {
+    return imageUrl.replace(BACKEND_BASE_URL, '');
   }
   return imageUrl;
 };

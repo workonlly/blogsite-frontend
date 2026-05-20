@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+const BACKEND_BASE_URL = process.env.BACKEND_URL || 'http://localhost:4000';
 
 interface FormDataState {
   seo_title: string;
@@ -73,7 +74,7 @@ export default function EditPostClient({ postId }: { postId: string }) {
 
     const loadPost = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/api/posts/${postId}`, { cache: 'no-store' });
+        const response = await fetch(`${BACKEND_BASE_URL}/api/posts/${postId}`, { cache: 'no-store' });
         const result = await response.json();
 
         if (!result.success) {
@@ -165,8 +166,8 @@ export default function EditPostClient({ postId }: { postId: string }) {
 
   const resolveImageSrc = (imageUrl: string | null) => {
     if (!imageUrl) return null;
-    if (imageUrl.startsWith('http://localhost:4000/api/media/')) {
-      return imageUrl.replace('http://localhost:4000', '');
+    if (imageUrl.startsWith(`${BACKEND_BASE_URL}/api/media/`)) {
+      return imageUrl.replace(BACKEND_BASE_URL, '');
     }
     return imageUrl;
   };
@@ -199,7 +200,7 @@ export default function EditPostClient({ postId }: { postId: string }) {
     });
 
     try {
-      const response = await fetch(`http://localhost:4000/api/posts/${postId}`, {
+      const response = await fetch(`${BACKEND_BASE_URL}/api/posts/${postId}`, {
         method: 'PUT',
         body: submitData,
       });

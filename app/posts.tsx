@@ -21,8 +21,8 @@ const resolveImageSrc = (imageUrl: string | null): string => {
   }
   
   // If full URL with localhost, remove the domain part
-  if (imageUrl.startsWith('http://localhost:4000/api/media/')) {
-    return imageUrl.replace('http://localhost:4000', '');
+  if (imageUrl.startsWith(`${BACKEND_BASE_URL}/api/media/`)) {
+    return imageUrl.replace(BACKEND_BASE_URL, '');
   }
   
   // Otherwise return as-is
