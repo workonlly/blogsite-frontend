@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-
+const BACKEND_BASE_URL = process.env.BACKEND_URL || 'http://localhost:4000';
 // Define the shape of our Post data based on your SQLite schema
 interface Post {
   id: number;
@@ -37,7 +37,7 @@ function SEOPanel() {
   useEffect(() => {
     const fetchSEOData = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/blog', { cache: 'no-store' });
+        const response = await fetch(`${BACKEND_BASE_URL}/api/blog`, { cache: 'no-store' });
         const result = await response.json();
         if (result.success && result.data) {
           setSeoData({
@@ -67,7 +67,7 @@ function SEOPanel() {
     setIsSaving(true);
     setMessage(null);
     try {
-      const response = await fetch('http://localhost:4000/api/blog', {
+      const response = await fetch(`${BACKEND_BASE_URL}/api/blog` , {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(seoData),
@@ -242,8 +242,8 @@ export default function AllPostsPage() {
   const resolveImageSrc = (imageUrl: string | null) => {
     if (!imageUrl) return null;
 
-    if (imageUrl.startsWith('http://localhost:4000/api/media/')) {
-      return imageUrl.replace('http://localhost:4000', '');
+    if (imageUrl.startsWith(`${BACKEND_BASE_URL}/api/media/`)) {
+      return imageUrl.replace(BACKEND_BASE_URL, '');
     }
 
     return imageUrl;
@@ -254,7 +254,7 @@ export default function AllPostsPage() {
     const fetchPosts = async () => {
       try {
         // Adjust the URL if your backend runs on a different port/route
-        const response = await fetch('http://localhost:4000/api/posts', {
+        const response = await fetch(`${BACKEND_BASE_URL}/api/posts`, {
           cache: 'no-store',
         });
         const contentType = response.headers.get('content-type') || '';
@@ -311,7 +311,7 @@ export default function AllPostsPage() {
     }
 
     try {
-      const backendUrl =  'http://localhost:4000';
+      const backendUrl =  `${BACKEND_BASE_URL}`;
       const response = await fetch(`${backendUrl}/api/delete/${postId}`, {
         method: 'DELETE',
       });

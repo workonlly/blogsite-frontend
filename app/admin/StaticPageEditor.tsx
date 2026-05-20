@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-
+const BACKEND_BASE_URL = process.env.BACKEND_URL || 'http://localhost:4000';
 type PageRecord = {
   id: number;
   seo_title: string | null;
@@ -48,7 +48,7 @@ export default function StaticPageEditor({ pageId, title, endpoint }: Props) {
   useEffect(() => {
     const loadPage = async () => {
       try {
-        const response = await fetch(`http://localhost:4000${endpoint}`, { cache: 'no-store' });
+        const response = await fetch(`${BACKEND_BASE_URL}${endpoint}`, { cache: 'no-store' });
         const contentType = response.headers.get('content-type') || '';
 
         if (!response.ok) {
@@ -102,7 +102,7 @@ export default function StaticPageEditor({ pageId, title, endpoint }: Props) {
     setIsSaving(true);
 
     try {
-      const response = await fetch(`http://localhost:4000${endpoint}`, {
+      const response = await fetch(`${BACKEND_BASE_URL}${endpoint}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
